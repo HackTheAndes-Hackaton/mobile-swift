@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.env*
+!.env.example
+*.ipa
+*.xcarchive
+*.mobileprovision
+*.p12
+*.aifc
+*.wav
+*.mp3

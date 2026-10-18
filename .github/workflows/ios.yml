@@ -1,0 +1,26 @@
+name: iOS
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Core protocol tests
+        run: swift test --package-path TiskzCore
+      - name: Choose simulator
+        run: |
+          xcrun simctl list devices available -j > /tmp/devices.json
+          python3 - <<'PY'
+          import json, os
+          devices = json.load(open('/tmp/devices.json'))['devices']
+          phone = next(d for items in devices.values() for d in items if 'iPhone' in d['name'])
+          with open(os.environ['GITHUB_ENV'], 'a') as f:
+              f.write('SIMULATOR_ID=' + phone['udid'] + '\n')
+          PY
+      - name: Build and UI smoke test
+        run: >-
+          xcodebuild -project Tiskz.xcodeproj -scheme Tiskz
+          -destination "platform=iOS Simulator,id=$SIMULATOR_ID"
+          -derivedDataPath DerivedData test CODE_SIGNING_ALLOWED=NO

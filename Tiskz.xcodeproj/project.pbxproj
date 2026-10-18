@@ -1,0 +1,583 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		113246A07B8318A91227C9D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF054F2881D7BF7053654C5 /* HomeView.swift */; };
+		159BA4A41782819AAB580B2C /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A6B01C0565B6DD640B760 /* History.swift */; };
+		193809036A2F0DD9837C43BF /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D2958F70DDA1C3EBA6B877 /* Backend.swift */; };
+		1E4D1C1D9360E9C5E860BB13 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2D7EB1B901C56D7343EB4B /* AVFoundation.framework */; };
+		2E6CF22272E6CEC9E5AE13C9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8B9A968F0A9E0181A1E30 /* Settings.swift */; };
+		56675AAF9C6CA9405AF16522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F963E31F916B2B8C3D4594 /* ContentView.swift */; };
+		57A28209E8089A8FA1D454EB /* TiskzCore in Frameworks */ = {isa = PBXBuildFile; productRef = 91FA742C5EAF9B2DF3219728 /* TiskzCore */; };
+		6CFEF80055572A6E0E6F588F /* TiskzAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A76EDADC354EF925B6B4A117 /* TiskzAudioDevice.m */; };
+		6DC3E1B28D39742C8B42A95D /* CallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A79D6CE839FB7F2709F6E /* CallSession.swift */; };
+		80147567D32766AD57CA04EA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9BC409BD70B0EF287C8B5F5E /* PrivacyInfo.xcprivacy */; };
+		918FB91C815A3D39958ECCE2 /* VoicePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CB8F679FFE64937BC1B988 /* VoicePeer.swift */; };
+		99F0E7D6B47FFCEC018E83B9 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913BA85D6D03001E6E22150 /* DesignSystem.swift */; };
+		9E8C612141F0064800BB5424 /* TiskzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CD86197DB6038642063A11 /* TiskzApp.swift */; };
+		B0537F0A57B7B43459805542 /* ContactsBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169135A5646C0A3B6BEBA214 /* ContactsBook.swift */; };
+		C0B348FDC5720C669CAFDD68 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F229048A71DFD4DDEF375ECE /* AudioToolbox.framework */; };
+		CF27527D07123E82A17A71E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C248C5CF0FB21365DA387CE /* Assets.xcassets */; };
+		D07F444DE9BE5F5C6526438C /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = 43676F33D04AB55329BCAF51 /* WebRTC */; };
+		D3338F99A8BA8BF4726FB1C4 /* TiskzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FCC456601D41323235F465 /* TiskzUITests.swift */; };
+		F4CFD2F5F1BCFB05923BF535 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA491FBC010573DDE4564C /* ContactsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4181EBDFFD687BA96486DD28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAA93F07826FD4EDFABC7DFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1438AE06FA571E7FD89B2181;
+			remoteInfo = Tiskz;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02D2958F70DDA1C3EBA6B877 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		169135A5646C0A3B6BEBA214 /* ContactsBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsBook.swift; sourceTree = "<group>"; };
+		4913BA85D6D03001E6E22150 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		4C2D7EB1B901C56D7343EB4B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4EC8B9A968F0A9E0181A1E30 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		5C248C5CF0FB21365DA387CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5EF1FA278AE955E4F3DF9DD7 /* TiskzCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TiskzCore; path = TiskzCore; sourceTree = SOURCE_ROOT; };
+		63FCC456601D41323235F465 /* TiskzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiskzUITests.swift; sourceTree = "<group>"; };
+		641A79D6CE839FB7F2709F6E /* CallSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSession.swift; sourceTree = "<group>"; };
+		6FF054F2881D7BF7053654C5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		71ED2ED1793A232130DCA7F9 /* TiskzUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TiskzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76CB8F679FFE64937BC1B988 /* VoicePeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePeer.swift; sourceTree = "<group>"; };
+		884A6B01C0565B6DD640B760 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		9BC409BD70B0EF287C8B5F5E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A76EDADC354EF925B6B4A117 /* TiskzAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TiskzAudioDevice.m; sourceTree = "<group>"; };
+		A9439595A191D7AF5438B549 /* TiskzAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiskzAudioDevice.h; sourceTree = "<group>"; };
+		B8CA491FBC010573DDE4564C /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		E8F963E31F916B2B8C3D4594 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F229048A71DFD4DDEF375ECE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F6CD86197DB6038642063A11 /* TiskzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiskzApp.swift; sourceTree = "<group>"; };
+		F6EEC9A4471F76FCFE8DD345 /* Tiskz.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tiskz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7047E8E04C7EFE4A0DF525EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57A28209E8089A8FA1D454EB /* TiskzCore in Frameworks */,
+				D07F444DE9BE5F5C6526438C /* WebRTC in Frameworks */,
+				C0B348FDC5720C669CAFDD68 /* AudioToolbox.framework in Frameworks */,
+				1E4D1C1D9360E9C5E860BB13 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F99142B5CEDE44690715553 = {
+			isa = PBXGroup;
+			children = (
+				720BF2DE22E7EA66DB8D053B /* App */,
+				4E8CF8B0D15BEB2A78F3D97C /* Packages */,
+				C924A9973A2D5BC4412C8D32 /* Resources */,
+				D2B157C6F7025027B49CC48E /* Services */,
+				75C674AC04F5E676CB559803 /* TiskzUITests */,
+				95A5CC9ED380677DCF72A8EA /* Views */,
+				A93472D2CA335A6152D26DDD /* Frameworks */,
+				D146F5C5001145A373C7C117 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4E8CF8B0D15BEB2A78F3D97C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				5EF1FA278AE955E4F3DF9DD7 /* TiskzCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		720BF2DE22E7EA66DB8D053B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F6CD86197DB6038642063A11 /* TiskzApp.swift */,
+			);
+			name = App;
+			path = Tiskz/App;
+			sourceTree = "<group>";
+		};
+		75C674AC04F5E676CB559803 /* TiskzUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63FCC456601D41323235F465 /* TiskzUITests.swift */,
+			);
+			path = TiskzUITests;
+			sourceTree = "<group>";
+		};
+		95A5CC9ED380677DCF72A8EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8CA491FBC010573DDE4564C /* ContactsView.swift */,
+				E8F963E31F916B2B8C3D4594 /* ContentView.swift */,
+				4913BA85D6D03001E6E22150 /* DesignSystem.swift */,
+				6FF054F2881D7BF7053654C5 /* HomeView.swift */,
+			);
+			name = Views;
+			path = Tiskz/Views;
+			sourceTree = "<group>";
+		};
+		A93472D2CA335A6152D26DDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F229048A71DFD4DDEF375ECE /* AudioToolbox.framework */,
+				4C2D7EB1B901C56D7343EB4B /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C924A9973A2D5BC4412C8D32 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C248C5CF0FB21365DA387CE /* Assets.xcassets */,
+				9BC409BD70B0EF287C8B5F5E /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			path = Tiskz/Resources;
+			sourceTree = "<group>";
+		};
+		D146F5C5001145A373C7C117 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6EEC9A4471F76FCFE8DD345 /* Tiskz.app */,
+				71ED2ED1793A232130DCA7F9 /* TiskzUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2B157C6F7025027B49CC48E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				02D2958F70DDA1C3EBA6B877 /* Backend.swift */,
+				641A79D6CE839FB7F2709F6E /* CallSession.swift */,
+				169135A5646C0A3B6BEBA214 /* ContactsBook.swift */,
+				884A6B01C0565B6DD640B760 /* History.swift */,
+				4EC8B9A968F0A9E0181A1E30 /* Settings.swift */,
+				A9439595A191D7AF5438B549 /* TiskzAudioDevice.h */,
+				A76EDADC354EF925B6B4A117 /* TiskzAudioDevice.m */,
+				76CB8F679FFE64937BC1B988 /* VoicePeer.swift */,
+			);
+			name = Services;
+			path = Tiskz/Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1438AE06FA571E7FD89B2181 /* Tiskz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38DD0691C4BAEEAFC7F19DF7 /* Build configuration list for PBXNativeTarget "Tiskz" */;
+			buildPhases = (
+				010881FE0656FBF9820511B8 /* Sources */,
+				1FB1F73E3925DF82EF0C4FA4 /* Resources */,
+				7047E8E04C7EFE4A0DF525EB /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tiskz;
+			packageProductDependencies = (
+				91FA742C5EAF9B2DF3219728 /* TiskzCore */,
+				43676F33D04AB55329BCAF51 /* WebRTC */,
+			);
+			productName = Tiskz;
+			productReference = F6EEC9A4471F76FCFE8DD345 /* Tiskz.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1C0656FEE4222074BD00C05A /* TiskzUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51932E870941C6D457FE9ED6 /* Build configuration list for PBXNativeTarget "TiskzUITests" */;
+			buildPhases = (
+				A41200E5CFF459352035415E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3139D03BF0E1EA568EFC5EB8 /* PBXTargetDependency */,
+			);
+			name = TiskzUITests;
+			packageProductDependencies = (
+			);
+			productName = TiskzUITests;
+			productReference = 71ED2ED1793A232130DCA7F9 /* TiskzUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAA93F07826FD4EDFABC7DFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1438AE06FA571E7FD89B2181 = {
+						ProvisioningStyle = Automatic;
+					};
+					1C0656FEE4222074BD00C05A = {
+						TestTargetID = 1438AE06FA571E7FD89B2181;
+					};
+				};
+			};
+			buildConfigurationList = E7DA0C8664AEB784EC088872 /* Build configuration list for PBXProject "Tiskz" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 1F99142B5CEDE44690715553;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CD5A2AF2A05EB5DFB7501051 /* XCRemoteSwiftPackageReference "WebRTC" */,
+				97BB1CC68B3B76BC3194E988 /* XCLocalSwiftPackageReference "TiskzCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D146F5C5001145A373C7C117 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1438AE06FA571E7FD89B2181 /* Tiskz */,
+				1C0656FEE4222074BD00C05A /* TiskzUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1FB1F73E3925DF82EF0C4FA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF27527D07123E82A17A71E6 /* Assets.xcassets in Resources */,
+				80147567D32766AD57CA04EA /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		010881FE0656FBF9820511B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				193809036A2F0DD9837C43BF /* Backend.swift in Sources */,
+				6DC3E1B28D39742C8B42A95D /* CallSession.swift in Sources */,
+				B0537F0A57B7B43459805542 /* ContactsBook.swift in Sources */,
+				F4CFD2F5F1BCFB05923BF535 /* ContactsView.swift in Sources */,
+				56675AAF9C6CA9405AF16522 /* ContentView.swift in Sources */,
+				99F0E7D6B47FFCEC018E83B9 /* DesignSystem.swift in Sources */,
+				159BA4A41782819AAB580B2C /* History.swift in Sources */,
+				113246A07B8318A91227C9D1 /* HomeView.swift in Sources */,
+				2E6CF22272E6CEC9E5AE13C9 /* Settings.swift in Sources */,
+				9E8C612141F0064800BB5424 /* TiskzApp.swift in Sources */,
+				6CFEF80055572A6E0E6F588F /* TiskzAudioDevice.m in Sources */,
+				918FB91C815A3D39958ECCE2 /* VoicePeer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A41200E5CFF459352035415E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3338F99A8BA8BF4726FB1C4 /* TiskzUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3139D03BF0E1EA568EFC5EB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1438AE06FA571E7FD89B2181 /* Tiskz */;
+			targetProxy = 4181EBDFFD687BA96486DD28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08CFF9FAF8A022B86DA31B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiskz.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tiskz;
+			};
+			name = Release;
+		};
+		4000C7D07AC794653F97E151 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiskz.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tiskz;
+			};
+			name = Debug;
+		};
+		5BA122DFAF18B40DD3782530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_LANGUAGE = es;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tiskz;
+				INFOPLIST_KEY_NSContactsUsageDescription = "Tiskz muestra tus contactos y permite gestionarlos en este iPhone. No los envía al servidor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Tiskz utiliza el micrófono para conversar y analizar audio cuando lo autorizas.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiskz.ios;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tiskz/Tiskz-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6015CBD94770B43EC341C9E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		A3608575C374FF57708F80D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_LANGUAGE = es;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Tiskz;
+				INFOPLIST_KEY_NSContactsUsageDescription = "Tiskz muestra tus contactos y permite gestionarlos en este iPhone. No los envía al servidor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Tiskz utiliza el micrófono para conversar y analizar audio cuando lo autorizas.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiskz.ios;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tiskz/Tiskz-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF1AD53DF5D318C58A9E98BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38DD0691C4BAEEAFC7F19DF7 /* Build configuration list for PBXNativeTarget "Tiskz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BA122DFAF18B40DD3782530 /* Debug */,
+				A3608575C374FF57708F80D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		51932E870941C6D457FE9ED6 /* Build configuration list for PBXNativeTarget "TiskzUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4000C7D07AC794653F97E151 /* Debug */,
+				08CFF9FAF8A022B86DA31B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E7DA0C8664AEB784EC088872 /* Build configuration list for PBXProject "Tiskz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6015CBD94770B43EC341C9E3 /* Debug */,
+				EF1AD53DF5D318C58A9E98BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		97BB1CC68B3B76BC3194E988 /* XCLocalSwiftPackageReference "TiskzCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TiskzCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CD5A2AF2A05EB5DFB7501051 /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stasel/WebRTC.git";
+			requirement = {
+				kind = exactVersion;
+				version = 155.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		43676F33D04AB55329BCAF51 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD5A2AF2A05EB5DFB7501051 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
+		};
+		91FA742C5EAF9B2DF3219728 /* TiskzCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TiskzCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AAA93F07826FD4EDFABC7DFE /* Project object */;
+}

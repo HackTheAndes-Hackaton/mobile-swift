@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108">
+  <defs><linearGradient id="waves" x1="54" y1="42" x2="54" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1D4ED8" stop-opacity="1"/><stop offset="1" stop-color="#38BDF8" stop-opacity="1"/></linearGradient></defs>
+  <path d="M54,28C59,31.5 67.5,34 76,35C76.6,36 77,37.5 77,39V53C77,67.5 67.5,78.5 54,84C40.5,78.5 31,67.5 31,53V39C31,37.5 31.4,36 32,35C40.5,34 49,31.5 54,28Z" fill="#0B1B4D" fill-opacity="0.149020"/>
+  <path d="M54,26C59,29.5 67.5,32 76,33C76.6,34 77,35.5 77,37V51C77,65.5 67.5,76.5 54,82C40.5,76.5 31,65.5 31,51V37C31,35.5 31.4,34 32,33C40.5,32 49,29.5 54,26Z" fill="#FFFFFF" fill-opacity="1"/>
+  <path d="M41.5,48.5A2.5,2.5 0,0 1,46.5 48.5V57.5A2.5,2.5 0,0 1,41.5 57.5Z M51.5,44.5A2.5,2.5 0,0 1,56.5 44.5V61.5A2.5,2.5 0,0 1,51.5 61.5Z M61.5,48.5A2.5,2.5 0,0 1,66.5 48.5V57.5A2.5,2.5 0,0 1,61.5 57.5Z" fill="url(#waves)"/>
+</svg>
