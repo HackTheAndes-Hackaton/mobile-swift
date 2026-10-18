@@ -37,9 +37,11 @@ final class TiskzUITests: XCTestCase {
     }
     func testContactsPermissionStaysOptional() {
         let app = launch()
-        app.buttons["Contactos"].tap()
+        app.buttons["Ajustes"].tap()
+        app.buttons["open-contacts"].tap()
         XCTAssertTrue(app.staticTexts["Contactos"].waitForExistence(timeout:5))
         XCTAssertTrue(app.buttons["Permitir contactos"].exists)
+        app.buttons["Volver"].tap()
         app.buttons["Volver"].tap()
         XCTAssertTrue(app.staticTexts["Protección desactivada"].waitForExistence(timeout:5))
     }

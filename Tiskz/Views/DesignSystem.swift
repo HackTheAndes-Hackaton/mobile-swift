@@ -32,11 +32,21 @@ extension Color {
     init(hex: UInt32) { self.init(.sRGB, red:Double((hex >> 16) & 255) / 255, green:Double((hex >> 8) & 255) / 255, blue:Double(hex & 255) / 255, opacity:1) }
 }
 enum TiskzType {
-    static let title = Font.system(.title2, design:.default).weight(.bold)
-    static let subtitle = Font.system(.body, design:.default).weight(.semibold)
-    static let body = Font.system(.body, design:.default)
-    static let small = Font.system(.subheadline, design:.default)
-    static let caption = Font.system(.footnote, design:.default)
+    static let title = Font.custom("Roboto-Bold",size:22,relativeTo:.title2)
+    static let subtitle = Font.custom("Roboto-Medium",size:17,relativeTo:.body)
+    static let body = Font.custom("Roboto-Regular",size:17,relativeTo:.body)
+    static let bodyMedium = Font.custom("Roboto-Regular",size:15,relativeTo:.subheadline)
+    static let small = Font.custom("Roboto-Regular",size:15,relativeTo:.subheadline)
+    static let caption = Font.custom("Roboto-Regular",size:13,relativeTo:.footnote)
+    static let homeTitle = Font.custom("Roboto-Bold",size:24,relativeTo:.title2)
+    static let wordmark = Font.custom("Roboto-Bold",size:22,relativeTo:.title2)
+    static let homeBody = Font.custom("Roboto-Regular",size:15,relativeTo:.subheadline)
+    static let homeButton = Font.custom("Roboto-Medium",size:15,relativeTo:.subheadline)
+    static let statValue = Font.custom("Roboto-Bold",size:26,relativeTo:.title2)
+    static let dialNumber = Font.custom("Roboto-Regular",size:34,relativeTo:.largeTitle)
+    static let dialDigit = Font.custom("Roboto-Regular",size:28,relativeTo:.title2)
+    static let dialLetters = Font.custom("Roboto-Medium",size:11,relativeTo:.caption)
+    static let contactButton = Font.custom("Roboto-Medium",size:14,relativeTo:.body)
 }
 /// Vector images are extracted from the Android drawable and Tabler Compose package.
 struct TablerIcon: View {
@@ -119,7 +129,7 @@ struct CallerAvatar: View {
     var body: some View {
         ZStack {
             Circle().fill(LinearGradient(colors:[TiskzPalette.blue100,TiskzPalette.blue50],startPoint:.topLeading,endPoint:.bottomTrailing))
-            if !initials.isEmpty { Text(initials).font(.system(size:size * 0.36,weight:.bold)) }
+            if !initials.isEmpty { Text(initials).font(.custom("Roboto-Bold",size:size * 0.36,relativeTo:.body)) }
             else { TablerIcon(name:"User").frame(width:size * 0.5,height:size * 0.5) }
         }.foregroundStyle(TiskzPalette.blue700).frame(width:size,height:size).accessibilityHidden(true)
     }

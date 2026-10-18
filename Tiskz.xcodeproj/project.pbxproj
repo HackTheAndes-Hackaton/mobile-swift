@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008A383EEA92C075FCB3E5FD /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 8B5E2806AC3A7481C38867FB /* Fonts */; };
 		113246A07B8318A91227C9D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF054F2881D7BF7053654C5 /* HomeView.swift */; };
 		159BA4A41782819AAB580B2C /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A6B01C0565B6DD640B760 /* History.swift */; };
 		193809036A2F0DD9837C43BF /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D2958F70DDA1C3EBA6B877 /* Backend.swift */; };
@@ -52,6 +53,7 @@
 		71ED2ED1793A232130DCA7F9 /* TiskzUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = TiskzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76CB8F679FFE64937BC1B988 /* VoicePeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePeer.swift; sourceTree = "<group>"; };
 		884A6B01C0565B6DD640B760 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		8B5E2806AC3A7481C38867FB /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Tiskz/Resources/Fonts; sourceTree = SOURCE_ROOT; };
 		9BC409BD70B0EF287C8B5F5E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A76EDADC354EF925B6B4A117 /* TiskzAudioDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TiskzAudioDevice.m; sourceTree = "<group>"; };
 		A9439595A191D7AF5438B549 /* TiskzAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiskzAudioDevice.h; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		1F99142B5CEDE44690715553 = {
 			isa = PBXGroup;
 			children = (
+				8B5E2806AC3A7481C38867FB /* Fonts */,
 				720BF2DE22E7EA66DB8D053B /* App */,
 				4E8CF8B0D15BEB2A78F3D97C /* Packages */,
 				C924A9973A2D5BC4412C8D32 /* Resources */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF27527D07123E82A17A71E6 /* Assets.xcassets in Resources */,
+				008A383EEA92C075FCB3E5FD /* Fonts in Resources */,
 				80147567D32766AD57CA04EA /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

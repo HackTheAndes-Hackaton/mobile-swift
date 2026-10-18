@@ -14,7 +14,6 @@ struct ContentView: View {
                 onOpenVoice:{ path.append(.voice) },
                 onOpenHistory:{ path.append(.history) },
                 onOpenSettings:{ path.append(.settings) },
-                onOpenContacts:{ path.append(.contacts) },
                 onOpenDialer:{ path.append(.dialer) },
             )
             .navigationDestination(for:AppDestination.self) { destination in
@@ -22,7 +21,7 @@ struct ContentView: View {
                     switch destination {
                     case .voice: VoiceView()
                     case .history: HistoryView()
-                    case .settings: SettingsView()
+                    case .settings: SettingsView(onOpenContacts:{ path.append(.contacts) })
                     case .contacts: ContactsView(onOpenDialer:{ path.append(.dialer) })
                     case .dialer: DialerView()
                     }
@@ -174,6 +173,7 @@ struct HistoryView: View {
     @Environment(\.dismiss) private var dismiss
 }
 struct SettingsView: View {
+    let onOpenContacts: () -> Void
     @EnvironmentObject var settings: Settings
     @EnvironmentObject var session: CallSession
     @EnvironmentObject var history: History
@@ -200,6 +200,10 @@ struct SettingsView: View {
                         Toggle("Guardar historial en este iPhone",isOn:$settings.keepHistory).tint(TiskzPalette.blue600)
                         Divider().overlay(TiskzPalette.line)
                         Toggle("Permitir envío manual al panel",isOn:$settings.shareHistory).tint(TiskzPalette.blue600)
+                        Button(action:onOpenContacts) {
+                            Label("Contactos",systemImage:"person.crop.circle").font(TiskzType.small.weight(.semibold))
+                                .foregroundStyle(TiskzPalette.blue700).frame(maxWidth:.infinity,alignment:.leading).padding(.vertical,8)
+                        }.accessibilityIdentifier("open-contacts")
                         Text("Son permisos independientes del análisis y del guardado de audio. Desactivar el historial no elimina sesiones existentes; usa Borrar en Historial.").font(TiskzType.caption).foregroundStyle(TiskzPalette.muted)
                     }.tiskzCard()
 

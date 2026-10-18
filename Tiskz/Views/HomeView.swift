@@ -10,7 +10,6 @@ struct HomeView: View {
     let onOpenVoice: () -> Void
     let onOpenHistory: () -> Void
     let onOpenSettings: () -> Void
-    let onOpenContacts: () -> Void
     let onOpenDialer: () -> Void
 
     var body: some View {
@@ -20,21 +19,21 @@ struct HomeView: View {
                     hero(topInset:geometry.safeAreaInsets.top)
                     HStack(spacing:10) {
                         stat(history.records.count,"Analizadas","Activity",TiskzPalette.blue600,TiskzPalette.blue50)
-                        stat(history.records.filter { $0.analysis.alert == true }.count,"Alertas","AlertTriangle",TiskzPalette.red,TiskzPalette.redContainer)
-                        stat(history.records.filter { $0.analysis.currentAssessment?.state == .verificar }.count,"Revisar","ShieldCheck",TiskzPalette.amberDark,TiskzPalette.amberContainer)
+                        stat(history.records.filter { $0.analysis.alert == true }.count,"Estafas","ShieldX",TiskzPalette.red,TiskzPalette.redContainer)
+                        stat(history.records.filter { $0.analysis.currentAssessment?.state == .observar }.count,"Seguras","ShieldCheck",TiskzPalette.emeraldDark,TiskzPalette.emeraldContainer)
                     }.padding(.horizontal,20).padding(.top,-44)
 
                     VStack(spacing:16) {
                         infoCard(
                             title:"Llamadas telefónicas",
-                            detail:"En iOS, las llamadas de la SIM se gestionan desde Teléfono. Tiskz puede conversar con marin por internet o mostrar alertas de Vapi.",
+                            detail:"En iOS, las llamadas de la SIM se gestionan desde Teléfono. Tiskz no puede contestar ni unir la conferencia automáticamente; puedes hablar con marin por el canal de voz.",
                             action:"Configurar llamadas",
                             actionHandler:onOpenSettings,
                         )
                         if !contacts.allowed { contactsBanner }
                         infoCard(
                             title:"Canal de voz en vivo",
-                            detail:"Conversa con marin por internet y recibe transcripciones y alertas mientras hablas.",
+                            detail:"Envía el micrófono a los agentes y recibe transcripción y alertas en tiempo real.",
                             action:"Abrir canal de voz",
                             actionHandler:onOpenVoice,
                         )
@@ -88,9 +87,8 @@ struct HomeView: View {
         VStack(spacing:0) {
             HStack(spacing:10) {
                 TiskzLogo(size:38,onDark:true)
-                Text("Tiskz").font(.system(size:22,weight:.bold)).foregroundStyle(.white)
+                Text("Tiskz").font(TiskzType.wordmark).foregroundStyle(.white)
                 Spacer(minLength:0)
-                Button(action:onOpenContacts) { TablerIcon(name:"Users").frame(width:24,height:24).foregroundStyle(.white).frame(width:48,height:48) }.accessibilityLabel("Contactos")
                 Button(action:onOpenSettings) { TablerIcon(name:"Settings").frame(width:24,height:24).foregroundStyle(.white).frame(width:48,height:48) }.accessibilityLabel("Ajustes")
             }
             VStack(spacing:0) {
@@ -103,22 +101,22 @@ struct HomeView: View {
                     }
                 }.frame(width:144,height:144)
                 Text(session.connected ? "Canal conectado" : "Protección desactivada")
-                    .font(.system(size:24,weight:.bold)).foregroundStyle(.white).multilineTextAlignment(.center)
-                Text(session.connected ? "Transcripciones y orientación durante la conversación" : "Conecta el canal de voz para recibir alertas en vivo")
-                    .font(.system(size:15)).lineSpacing(2).foregroundStyle(.white.opacity(0.82))
+                    .font(TiskzType.homeTitle).foregroundStyle(.white).multilineTextAlignment(.center)
+                Text(session.connected ? "Transcripciones y orientación durante la conversación" : "Prepara Tiskz para atender con marin")
+                    .font(TiskzType.homeBody).lineSpacing(2).foregroundStyle(.white.opacity(0.82))
                     .multilineTextAlignment(.center).padding(.top,4)
                 Spacer().frame(height:14)
                 if session.connected {
                     TiskzStatusPill(text:session.message.isEmpty ? "Canal conectado" : session.message,color:.white,container:.white.opacity(0.18))
                 } else {
                     Button("Preparar Tiskz",action:onOpenSettings)
-                        .font(.system(size:15,weight:.semibold)).foregroundStyle(TiskzPalette.blue700)
-                        .padding(.horizontal,24).frame(height:48).background(.white,in:Capsule())
+                        .font(TiskzType.homeButton).foregroundStyle(TiskzPalette.blue700)
+                        .padding(.horizontal,24).frame(width:176,height:48).background(.white,in:Capsule())
                 }
             }.frame(maxWidth:.infinity).padding(.top,4)
         }
         .foregroundStyle(.white)
-        .padding(.leading,20).padding(.trailing,12).padding(.top,topInset + 8).padding(.bottom,68)
+        .padding(.leading,20).padding(.trailing,12).padding(.top,topInset > 55 ? topInset - 30 : topInset + 8).padding(.bottom,68)
         .frame(maxWidth:.infinity)
         .background(session.connected ? TiskzPalette.brand : TiskzPalette.inactive,
                     in:UnevenRoundedRectangle(bottomLeadingRadius:36,bottomTrailingRadius:36))
@@ -129,8 +127,8 @@ struct HomeView: View {
             VStack(alignment:.leading,spacing:10) {
                 TablerIcon(name:icon).frame(width:20,height:20).foregroundStyle(tint)
                     .frame(width:34,height:34).background(container,in:Circle())
-                Text("\(value)").font(.system(size:26,weight:.bold)).monospacedDigit().foregroundStyle(TiskzPalette.ink)
-                Text(label).font(.system(size:13)).foregroundStyle(TiskzPalette.muted).lineLimit(1).minimumScaleFactor(0.85)
+                Text("\(value)").font(TiskzType.statValue).monospacedDigit().foregroundStyle(TiskzPalette.ink)
+                Text(label).font(TiskzType.caption).foregroundStyle(TiskzPalette.muted).lineLimit(1).minimumScaleFactor(0.85)
             }.padding(14).frame(maxWidth:.infinity,alignment:.leading)
         }
     }
@@ -138,8 +136,11 @@ struct HomeView: View {
     private func infoCard(title:String,detail:String,action:String,actionHandler:@escaping () -> Void) -> some View {
         VStack(alignment:.leading,spacing:10) {
             Text(title).font(TiskzType.subtitle).foregroundStyle(TiskzPalette.ink)
-            Text(detail).font(.system(size:15)).lineSpacing(2).foregroundStyle(TiskzPalette.ink)
-            Button(action,action:actionHandler).buttonStyle(TiskzPrimaryButton())
+            Text(detail).font(TiskzType.bodyMedium).lineSpacing(2).foregroundStyle(TiskzPalette.ink)
+            Button(action:actionHandler) {
+                Text(action).font(TiskzType.homeButton).frame(maxWidth:.infinity,minHeight:48)
+                    .foregroundStyle(.white).background(TiskzPalette.blue600,in:RoundedRectangle(cornerRadius:20))
+            }.buttonStyle(.plain)
         }.padding(20).frame(maxWidth:.infinity,alignment:.leading).background(TiskzPalette.blue50,in:RoundedRectangle(cornerRadius:24))
     }
 
@@ -154,7 +155,7 @@ struct HomeView: View {
                 }
                 Spacer(minLength:4)
                 Button("Permitir") { Task { await contacts.refresh(requestPermission:true) } }
-                    .font(.system(size:14,weight:.semibold)).foregroundStyle(.white)
+                    .font(TiskzType.contactButton).foregroundStyle(.white)
                     .padding(.horizontal,14).frame(height:40).background(TiskzPalette.blue600,in:Capsule())
             }.padding(16)
         }
@@ -220,7 +221,7 @@ struct DialerView: View {
             TiskzTopBar(title:"Marcar") { dismiss() }
             Spacer(minLength:24)
             HStack(spacing:8) {
-                Text(number).font(.system(size:34)).foregroundStyle(TiskzPalette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                Text(number).font(TiskzType.dialNumber).foregroundStyle(TiskzPalette.ink).lineLimit(1).minimumScaleFactor(0.6)
                     .frame(maxWidth:.infinity).accessibilityIdentifier("dialed-number")
                 if !number.isEmpty {
                     Button { number.removeLast() } label: { TablerIcon(name:"Backspace").frame(width:24,height:24).foregroundStyle(TiskzPalette.muted).frame(width:44,height:44) }
@@ -234,8 +235,8 @@ struct DialerView: View {
                         ForEach(keys[(row * 3)..<(row * 3 + 3)],id:\.0) { digit,letters in
                             Button { number.append(digit) } label: {
                                 VStack(spacing:0) {
-                                    Text(digit).font(.system(size:28)).foregroundStyle(TiskzPalette.ink)
-                                    if !letters.isEmpty { Text(letters).font(.system(size:11,weight:.medium)).tracking(1).foregroundStyle(TiskzPalette.muted) }
+                                    Text(digit).font(TiskzType.dialDigit).foregroundStyle(TiskzPalette.ink)
+                                    if !letters.isEmpty { Text(letters).font(TiskzType.dialLetters).tracking(1).foregroundStyle(TiskzPalette.muted) }
                                 }.frame(width:76,height:76).background(TiskzPalette.blue50,in:Circle())
                             }.buttonStyle(.plain).accessibilityIdentifier("dialer-key-\(digit)")
                         }

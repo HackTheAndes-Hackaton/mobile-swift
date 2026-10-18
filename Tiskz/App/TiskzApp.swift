@@ -1,5 +1,6 @@
 import SwiftUI
 import UserNotifications
+import CoreText
 
 final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) { completionHandler([.banner, .sound]) }
@@ -11,6 +12,9 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     @StateObject private var history: History
     private let notifications = NotificationDelegate()
     init() {
+        if let fontURL = Bundle.main.url(forResource:"Roboto-Regular",withExtension:"ttf",subdirectory:"Fonts") {
+            CTFontManagerRegisterFontsForURL(fontURL as CFURL,.process,nil)
+        }
         let settings = Settings(); _settings = StateObject(wrappedValue:settings); _history = StateObject(wrappedValue:History(enabled:settings.keepHistory))
         UNUserNotificationCenter.current().delegate = notifications
     }

@@ -26,6 +26,8 @@ targets:
       - path: Tiskz/Views
       - path: Tiskz/Resources/Assets.xcassets
       - path: Tiskz/Resources/PrivacyInfo.xcprivacy
+      - path: Tiskz/Resources/Fonts
+        type: folder
     dependencies:
       - package: TiskzCore
       - package: WebRTC

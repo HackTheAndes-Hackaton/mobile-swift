@@ -4,7 +4,7 @@
 - `xcodebuild test`: **3 pruebas UI aprobadas, 0 fallos** en **iPhone-17-Test / iOS 26.1**; navegación, consentimientos, configuración, historial, contactos y teclado sin efectuar llamadas.
 - `xcodebuild build -configuration Release -destination generic/platform=iOS CODE_SIGNING_ALLOWED=NO`: compilación **Release para iPhone arm64** aprobada, objetivo mínimo **iOS 17.0**. No equivale a probar el runtime iOS 17; en esta Mac solo estaba disponible el simulador iOS 26.1.
 - Catálogo de recursos comprobado en el bundle: escudo de marca, icono del lanzador y 27 vectores Tabler. La paleta sRGB coincide con `Theme.kt` de Android.
-- [Captura del simulador](home-ios26.png), sin claves ni conversaciones reales.
+- [Captura Android API 36](home-android-api36.png) y [captura del iPhone 17 / iOS 26.1](home-ios26.png), ambas sin claves ni conversaciones reales. Se compararon a tamaño lógico (411 × 914 dp y 402 × 874 pt): cabecera, hero, estadísticas y tarjetas conservan el orden y las proporciones; la barra de estado y Dynamic Island siguen siendo propias de iOS.
 
 No había identidad de firma Apple ni un iPhone de pruebas disponible en esta sesión. No se publicó una IPA ni se validó una conversación real con marin desde un iPhone. Las pruebas automáticas no consumen llamadas de Vapi ni créditos de IA. Para esa validación, sigue el inicio rápido del README y prueba con audio autorizado.
 
