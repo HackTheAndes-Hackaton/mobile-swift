@@ -9,12 +9,15 @@ struct ContactsView: View {
     @Environment(\.scenePhase) private var phase
     @State private var query = ""
     @State private var expanded: String?
-    @State private var addContact = false
+    @State private var favoriteIDs: Set<String> = []
+    @State private var editorContact: CNContact?
+    @State private var editorNumber: String?
+    @State private var showContactEditor = false
 
     var body: some View {
         VStack(spacing:0) {
             TiskzTopBar(title:"Contactos",onBack:{ dismiss() },trailing:[
-                TiskzTopBarAction(icon:"UserPlus",label:"Nuevo contacto") { addContact = true }
+                TiskzTopBarAction(icon:"UserPlus",label:"Nuevo contacto") { presentNewContact() }
             ],background:TiskzPalette.background)
             if !book.allowed {
                 permissionPrompt
@@ -31,9 +34,10 @@ struct ContactsView: View {
             }.padding(20).accessibilityLabel("Marcar")
         }
         .task { await book.refresh() }
+        .onAppear { favoriteIDs = Set(UserDefaults.standard.stringArray(forKey:"tiskz.favorite-contact-identifiers") ?? []) }
         .onChange(of:phase) { _, new in if new == .active { Task { await book.refresh() } } }
-        .sheet(isPresented:$addContact,onDismiss:{ Task { await book.refresh() } }) {
-            ContactEditor { addContact = false }
+        .sheet(isPresented:$showContactEditor,onDismiss:{ Task { await book.refresh() } }) {
+            ContactEditor(contact:editorContact,initialNumber:editorNumber) { showContactEditor = false }
         }
         .toolbar(.hidden,for:.navigationBar)
     }
@@ -43,7 +47,7 @@ struct ContactsView: View {
             Spacer()
             TablerIcon(name:"Users").frame(width:48,height:48).foregroundStyle(TiskzPalette.blue600)
             Text("Permite el acceso a tus contactos").font(TiskzType.subtitle).foregroundStyle(TiskzPalette.ink).padding(.top,12)
-            Text("Así puedes buscarlos y llamarlos desde Tiskz. Tus contactos se quedan en este iPhone.")
+            Text("Así puedes buscarlos y llamarlos desde Tiskz, y sus llamadas suenan normal, sin el asistente.")
                 .font(TiskzType.small).foregroundStyle(TiskzPalette.muted).multilineTextAlignment(.center)
                 .padding(.top,6).padding(.bottom,16)
             Button("Permitir contactos") { Task { await book.refresh(requestPermission:true) } }
@@ -62,15 +66,40 @@ struct ContactsView: View {
                         .textInputAutocapitalization(.never)
                 }.padding(.horizontal,14).frame(height:54).background(.white,in:RoundedRectangle(cornerRadius:18))
                     .padding(.horizontal,20).padding(.top,8)
-                if book.loading { ProgressView("Cargando contactos…").padding() }
+
                 let filtered = book.contacts.filter {
                     query.isEmpty || $0.name.localizedStandardContains(query) ||
                         (!query.filter(\.isNumber).isEmpty && $0.phones.contains { $0.number.filter(\.isNumber).contains(query.filter(\.isNumber)) })
                 }
+                let favorites = book.contacts.filter { favoriteIDs.contains($0.id) }
+                if query.isEmpty && !favorites.isEmpty {
+                    Text("Favoritos").font(TiskzType.subtitle).foregroundStyle(TiskzPalette.ink)
+                        .frame(maxWidth:.infinity,alignment:.leading).padding(.horizontal,24).padding(.top,8)
+                    ScrollView(.horizontal,showsIndicators:false) {
+                        HStack(spacing:12) {
+                            ForEach(favorites) { contact in
+                                Button { call(contact.phones[0].number) } label: {
+                                    VStack(spacing:6) {
+                                        CallerAvatar(name:contact.name,size:56,branded:true)
+                                        Text(contact.name.split(separator:" ").first.map(String.init) ?? contact.name)
+                                            .font(TiskzType.caption).foregroundStyle(TiskzPalette.ink).lineLimit(1)
+                                    }.frame(width:72).padding(.vertical,6).contentShape(RoundedRectangle(cornerRadius:16))
+                                }.buttonStyle(.plain).accessibilityLabel("Llamar a favorito \(contact.name)")
+                            }
+                        }.padding(.horizontal,20)
+                    }
+                }
+                if book.loading { ProgressView("Cargando contactos…").padding() }
                 let groups = Dictionary(grouping:filtered,by:{ $0.initial })
                 if filtered.isEmpty && !book.loading {
-                    Text(query.isEmpty ? "No tienes contactos guardados todavía." : "Ningún contacto coincide con «\(query)».")
-                        .font(TiskzType.small).foregroundStyle(TiskzPalette.muted).frame(maxWidth:.infinity).padding(24)
+                    VStack(spacing:12) {
+                        Text(query.isEmpty ? "No tienes contactos guardados todavía." : "Ningún contacto coincide con «\(query)».")
+                            .font(TiskzType.small).foregroundStyle(TiskzPalette.muted).multilineTextAlignment(.center)
+                        if query.filter(\.isNumber).count >= 6 {
+                            Button("Llamar a \(query.trimmingCharacters(in:.whitespacesAndNewlines))") { call(query) }
+                                .buttonStyle(TiskzPrimaryButton()).padding(.horizontal,24)
+                        }
+                    }.frame(maxWidth:.infinity).padding(24)
                 }
                 ForEach(groups.keys.sorted(),id:\.self) { letter in
                     Text(letter).font(TiskzType.small.weight(.semibold)).foregroundStyle(TiskzPalette.blue700)
@@ -90,7 +119,12 @@ struct ContactsView: View {
                         HStack(spacing:12) {
                             CallerAvatar(name:contact.name,size:44)
                             VStack(alignment:.leading,spacing:4) {
-                                Text(contact.name).font(TiskzType.subtitle).foregroundStyle(TiskzPalette.ink).lineLimit(1)
+                                HStack(spacing:4) {
+                                    Text(contact.name).font(TiskzType.subtitle).foregroundStyle(TiskzPalette.ink).lineLimit(1)
+                                    if favoriteIDs.contains(contact.id) {
+                                        TablerIcon(name:"Star").frame(width:14,height:14).foregroundStyle(TiskzPalette.amber)
+                                    }
+                                }
                                 Text(contact.phones.count > 1 ? "\(contact.phones.count) números" : contact.phones.first?.number ?? "")
                                     .font(TiskzType.caption).foregroundStyle(TiskzPalette.muted).lineLimit(1)
                             }
@@ -120,26 +154,71 @@ struct ContactsView: View {
                                 }.padding(.vertical,8)
                             }.buttonStyle(.plain)
                         }
+                        Button { openExistingContact(contact.id) } label: {
+                            HStack(spacing:6) {
+                                TablerIcon(name:"ExternalLink").frame(width:16,height:16).foregroundStyle(TiskzPalette.blue600)
+                                Text("Ver o editar en Contactos").font(TiskzType.contactButton).foregroundStyle(TiskzPalette.blue600)
+                            }.frame(maxWidth:.infinity,alignment:.leading).padding(.vertical,8)
+                        }.buttonStyle(.plain)
                     }.padding(.leading,70).padding(.trailing,14).padding(.bottom,10)
                 }
             }
         }.padding(.horizontal,20).padding(.vertical,4)
+            .contextMenu {
+                Button(favoriteIDs.contains(contact.id) ? "Quitar de favoritos" : "Añadir a favoritos",systemImage:favoriteIDs.contains(contact.id) ? "star.slash" : "star") {
+                    toggleFavorite(contact.id)
+                }
+            }
+    }
+
+    private func toggleFavorite(_ id:String) {
+        if favoriteIDs.contains(id) { favoriteIDs.remove(id) } else { favoriteIDs.insert(id) }
+        UserDefaults.standard.set(favoriteIDs.sorted(),forKey:"tiskz.favorite-contact-identifiers")
+    }
+
+    private func presentNewContact(number:String? = nil) {
+        editorContact = nil
+        editorNumber = number
+        showContactEditor = true
+    }
+
+    private func openExistingContact(_ id:String) {
+        let predicate = CNContact.predicateForContacts(withIdentifiers:[id])
+        editorContact = try? CNContactStore().unifiedContacts(matching:predicate,keysToFetch:[CNContactViewController.descriptorForRequiredKeys()]).first
+        editorNumber = nil
+        showContactEditor = editorContact != nil
     }
 
     private func call(_ number:String) {
-        let digits = number.filter { $0.isNumber || $0 == "+" }
-        if let url = URL(string:"tel:\(digits)") { openURL(url) }
+        let allowed = number.filter { $0.isNumber || $0 == "+" || $0 == "*" || $0 == "#" }
+        guard !allowed.isEmpty, let url = URL(string:"tel:\(allowed)") else { return }
+        openURL(url)
     }
 }
 
 struct ContactEditor: UIViewControllerRepresentable {
+    let contact: CNContact?
+    let initialNumber: String?
     let done: () -> Void
+
     func makeCoordinator() -> Coordinator { Coordinator(done:done) }
     func makeUIViewController(context: Context) -> UINavigationController {
-        let controller = CNContactViewController(forNewContact:nil); controller.contactStore = CNContactStore(); controller.delegate = context.coordinator
+        let controller: CNContactViewController
+        if let contact {
+            controller = CNContactViewController(for:contact)
+        } else {
+            let newContact = CNMutableContact()
+            if let initialNumber, !initialNumber.isEmpty {
+                newContact.phoneNumbers = [CNLabeledValue(label:CNLabelPhoneNumberMain,value:CNPhoneNumber(stringValue:initialNumber))]
+            }
+            controller = CNContactViewController(forNewContact:newContact)
+        }
+        controller.contactStore = CNContactStore()
+        controller.delegate = context.coordinator
         return UINavigationController(rootViewController:controller)
     }
     func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+
     final class Coordinator: NSObject, CNContactViewControllerDelegate {
         let done: () -> Void
         init(done:@escaping () -> Void) { self.done = done }

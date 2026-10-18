@@ -24,7 +24,7 @@ La interfaz copia la marca de la APK: tema claro, paleta azul, logo, tarjetas, b
 - Comparación de transcripción Scribe independiente de la decisión principal, cuando el servidor la emite.
 - Búfer PCM en RAM limitado a 10 s, guardado idempotente y reproducción de evidencia autorizada. Una captura de micrófono no captura el audio de una llamada de la SIM.
 - Historial local protegido, **apagado por defecto**. Envío manual al panel mediante `PUT /calls/{id}`, con autorización separada y API key en Keychain.
-- Contactos con búsqueda y permiso separado; teclado que abre llamadas en Teléfono, y editor nativo para agregar contactos. La agenda no se envía al servidor.
+- Contactos con búsqueda, favoritos locales y permiso separado; el marcador sugiere contactos y permite guardar números. Las llamadas se abren en Teléfono; la agenda no se envía al servidor.
 - Avisos locales con permiso del usuario. No hay integración APNs en este repositorio ni recepción remota garantizada con la app suspendida.
 
 ## Llamadas de operadora: diferencia con Android

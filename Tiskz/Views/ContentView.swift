@@ -14,6 +14,7 @@ struct ContentView: View {
                 onOpenVoice:{ path.append(.voice) },
                 onOpenHistory:{ path.append(.history) },
                 onOpenSettings:{ path.append(.settings) },
+                onOpenContacts:{ path.append(.contacts) },
                 onOpenDialer:{ path.append(.dialer) },
             )
             .navigationDestination(for:AppDestination.self) { destination in
@@ -23,7 +24,7 @@ struct ContentView: View {
                     case .history: HistoryView()
                     case .settings: SettingsView(onOpenContacts:{ path.append(.contacts) })
                     case .contacts: ContactsView(onOpenDialer:{ path.append(.dialer) })
-                    case .dialer: DialerView()
+                    case .dialer: DialerView(onOpenContacts:{ path.append(.contacts) })
                     }
                 }.toolbar(.hidden,for:.navigationBar)
             }
@@ -82,7 +83,7 @@ struct VoiceView: View {
                                 if session.mode != .phone { Button { session.toggleMute() } label: { Label(session.muted ? "Activar micrófono" : "Silenciar", systemImage:session.muted ? "mic.slash" : "mic") }.buttonStyle(.bordered) }
                                 Button(role:.destructive) { session.stop() } label: { Label(session.mode == .phone ? "Desconectar" : "Finalizar", systemImage:"phone.down.fill") }.buttonStyle(.bordered)
                             }
-                            if let ms = session.connectionMS { Text("Conexión: \(ms) ms").font(.caption.monospacedDigit()).foregroundStyle(TiskzPalette.muted) }
+                            if let ms = session.connectionMS { Text("Conexión: \(ms) ms").font(TiskzType.caption.monospacedDigit()).foregroundStyle(TiskzPalette.muted) }
                             if let ms = session.deliveryMS { Text("Entrega de evento: ~\(ms) ms · depende del reloj del dispositivo").font(TiskzType.caption).foregroundStyle(TiskzPalette.muted) }
                         }.tiskzCard()
                     }

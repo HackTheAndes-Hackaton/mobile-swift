@@ -39,6 +39,8 @@ enum TiskzType {
     static let small = Font.custom("Roboto-Regular",size:15,relativeTo:.subheadline)
     static let caption = Font.custom("Roboto-Regular",size:13,relativeTo:.footnote)
     static let homeTitle = Font.custom("Roboto-Bold",size:24,relativeTo:.title2)
+    static let onboardingTitle = Font.custom("Roboto-Bold",size:45,relativeTo:.largeTitle)
+    static let riskValue = Font.custom("Roboto-Bold",size:34,relativeTo:.largeTitle)
     static let wordmark = Font.custom("Roboto-Bold",size:22,relativeTo:.title2)
     static let homeBody = Font.custom("Roboto-Regular",size:15,relativeTo:.subheadline)
     static let homeButton = Font.custom("Roboto-Medium",size:15,relativeTo:.subheadline)
@@ -69,16 +71,16 @@ struct TiskzTopBar: View {
     var body: some View {
         HStack(spacing:0) {
             Button(action:onBack) {
-                TablerIcon(name:"ArrowLeft").frame(width:24,height:24).foregroundStyle(TiskzPalette.ink).frame(width:48,height:56)
+                TablerIcon(name:"ArrowLeft").frame(width:24,height:24).foregroundStyle(TiskzPalette.ink).frame(width:48,height:64)
             }.accessibilityLabel("Volver")
             Text(title).font(TiskzType.title).foregroundStyle(TiskzPalette.ink).lineLimit(1)
             Spacer(minLength:8)
             ForEach(trailing) { item in
                 Button(action:item.action) {
-                    TablerIcon(name:item.icon).frame(width:24,height:24).foregroundStyle(TiskzPalette.blue600).frame(width:44,height:56)
+                    TablerIcon(name:item.icon).frame(width:24,height:24).foregroundStyle(TiskzPalette.blue600).frame(width:48,height:64)
                 }.accessibilityLabel(item.label)
             }
-        }.padding(.leading,4).padding(.trailing,8).frame(maxWidth:.infinity).frame(height:56).background(background)
+        }.padding(.leading,4).padding(.trailing,8).frame(maxWidth:.infinity).frame(height:64).background(background)
     }
 }
 struct TiskzLogo: View {
@@ -123,15 +125,16 @@ struct TiskzStatusPill: View {
 struct CallerAvatar: View {
     var name: String? = nil
     var size: CGFloat = 48
+    var branded = false
     private var initials: String {
         (name ?? "").split(separator:" ").filter { $0.first?.isLetter == true || $0.first?.isNumber == true }.prefix(2).compactMap(\.first).map(String.init).joined().uppercased()
     }
     var body: some View {
         ZStack {
-            Circle().fill(LinearGradient(colors:[TiskzPalette.blue100,TiskzPalette.blue50],startPoint:.topLeading,endPoint:.bottomTrailing))
+            Circle().fill(branded ? AnyShapeStyle(TiskzPalette.brand) : AnyShapeStyle(LinearGradient(colors:[TiskzPalette.blue100,TiskzPalette.blue50],startPoint:.topLeading,endPoint:.bottomTrailing)))
             if !initials.isEmpty { Text(initials).font(.custom("Roboto-Bold",size:size * 0.36,relativeTo:.body)) }
             else { TablerIcon(name:"User").frame(width:size * 0.5,height:size * 0.5) }
-        }.foregroundStyle(TiskzPalette.blue700).frame(width:size,height:size).accessibilityHidden(true)
+        }.foregroundStyle(branded ? .white : TiskzPalette.blue700).frame(width:size,height:size).accessibilityHidden(true)
     }
 }
 struct TiskzWaveBars: View {
@@ -170,7 +173,7 @@ struct RiskBar: View {
                         Text(analysis.alert == true ? "Señales de riesgo" : analysis.probability == nil ? "Sin evaluar" : "Análisis provisional").font(TiskzType.title).foregroundStyle(TiskzPalette.risk(analysis.probability))
                     }
                     Spacer(minLength:8)
-                    Text(analysis.probability.map { "\(Int($0 * 100))%" } ?? "—").font(.system(.largeTitle,design:.default).bold()).monospacedDigit().foregroundStyle(TiskzPalette.risk(analysis.probability))
+                    Text(analysis.probability.map { "\(Int($0 * 100))%" } ?? "—").font(TiskzType.riskValue).monospacedDigit().foregroundStyle(TiskzPalette.risk(analysis.probability))
                 }
                 GeometryReader { geometry in
                     ZStack(alignment:.leading) {

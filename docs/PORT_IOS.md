@@ -1,6 +1,6 @@
 # Contrato y límites del port
 
-Base de referencia: Android `d63cbc1`, cliente 0.4.6, y protocolo de voz del repositorio `agents`. Este repositorio no modifica ni despliega ese servidor.
+Base de referencia: Android `13f8908`, cliente 0.4.6, y protocolo de voz del repositorio `agents`. Este repositorio no modifica ni despliega ese servidor.
 
 ## Transporte
 

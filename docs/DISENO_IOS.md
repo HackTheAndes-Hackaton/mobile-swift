@@ -1,6 +1,6 @@
 # Diseño de Tiskz en SwiftUI
 
-Referencia visual: `HackTheAndes-Hackaton/mobile-repo`, **main `d63cbc1`**, consultado el 18 de octubre de 2026. Se portaron los tokens de `ui/theme/Theme.kt`, las formas de `ui/components/Common.kt` y las pantallas nativas. No se incrusta la web ni una captura de la APK.
+Referencia visual: `HackTheAndes-Hackaton/mobile-repo`, **main `13f8908`**, cliente Android 0.4.6, consultado el 18 de octubre de 2026. Se portaron los tokens de `ui/theme/Theme.kt`, las formas de `ui/components/Common.kt` y las pantallas nativas. No se incrusta la web ni una captura de la APK.
 
 ## Paleta idéntica, sRGB
 
@@ -30,17 +30,18 @@ La marca usa degradado Blue900 → Blue600 → Sky. Las burbujas del agente usan
 | AssessmentCard | `AssessmentCard`: observar azul, verificar ámbar, alertar rojo, inconcluso neutro |
 | TranscriptBubble | `TranscriptBubble`: agente azul alineado a la derecha, interlocutor blanco a la izquierda, radios 22/6 pt |
 | OnboardingScreen | `OnboardingView`: logo de 96 pt, tres ventajas, botón principal y acceso sin activar |
-| ProtectionHero / StatsRow | `HomeView`: cabecera azul, esquinas inferiores de 36 pt, estadísticas superpuestas 44 pt y las tarjetas de llamadas, contactos y canal de voz en el orden Android |
-| CallRecordRow / EmptyRecents | `CallRecordRow` y estado vacío, avatares y etiquetas de orientación |
-| ContactsScreen / DialerScreen | `ContactsView`, `DialerView`: búsqueda, avatares, tarjetas y teclado; las llamadas se abren en Teléfono |
+| ProtectionHero / StatsRow | `HomeView`: cabecera azul con accesos a Contactos y Ajustes, esquinas inferiores de 36 pt, estadísticas superpuestas 44 pt y tarjetas de filtro, contactos y análisis en el orden Android |
+| CallRecordRow / EmptyRecents / PagedRecents | `CallRecordRow`, estado vacío y paginación deslizable de cinco llamadas |
+| ContactsScreen | `ContactsView`: búsqueda, carrusel de favoritos, avatares, tarjetas expandibles, alta/edición de contactos y acceso al marcador |
+| DialerScreen | `DialerView`: sugerencias por coincidencia de número, acción para guardar el número, teclado y llamadas mediante Teléfono |
 | SettingsScreen | `SettingsView`: tarjetas propias, campos delineados, switches azules y panel informativo con la misma paleta |
 
-Los estilos están centralizados en `Tiskz/Views/DesignSystem.swift`. Los tokens de texto usan las medidas base de Android: cuerpo 17 pt, secundario 15 pt, nota 13 pt y título 22 pt. Se incluye la fuente variable Roboto que Android API 36 usa por defecto y se conserva Dynamic Type de iOS. Los símbolos de marca y los 27 íconos usados por la app se extrajeron como vectores de los recursos Android y del paquete Tabler de Compose; se compilan dentro de `Assets.xcassets`.
+Los estilos están centralizados en `Tiskz/Views/DesignSystem.swift`. Las barras superiores de pantalla usan la altura Android de 64 pt. Los tokens de texto usan las medidas base de Android: cuerpo 17 pt, secundario 15 pt, nota 13 pt y título 22 pt. Se incluye la fuente variable Roboto que Android API 36 usa por defecto y se conserva Dynamic Type de iOS. Los símbolos de marca y los 27 íconos usados por la app se extrajeron como vectores de los recursos Android y del paquete Tabler de Compose; se compilan dentro de `Assets.xcassets`.
 
 ## Adaptaciones necesarias
 
 La apariencia y las categorías de estadísticas siguen Android. Los resultados son orientativos y no identifican personas ni confirman delitos. Los textos de telefonía describen las capacidades reales de iOS: la tarjeta lleva a configurar el canal y la conferencia de la SIM sigue siendo manual.
 
-Contactos requiere permiso independiente y permanece en el dispositivo; no se usa la agenda para atribuir identidades a voces. El alta usa el editor de Contactos de iOS. El historial muestra solo sesiones guardadas voluntariamente, no el registro de llamadas de la SIM, al que esta app no tiene acceso.
+Contactos requiere permiso independiente y permanece en el dispositivo; no se usa la agenda para atribuir identidades a voces. Como iOS no expone la marca de favoritos del proveedor Android, los favoritos de Tiskz se guardan localmente en este iPhone. El alta y la edición usan Contactos de iOS. El historial muestra solo sesiones guardadas voluntariamente, no el registro de llamadas de la SIM, al que esta app no tiene acceso.
 
-El icono de la app reproduce los vectores de `ic_launcher_background.xml` y `ic_launcher_foreground.xml`. Los assets vectoriales de la app se regeneran desde el checkout Android con `python3 scripts/extract_android_vectors.py`; el icono se regenera con `swift scripts/generate-icon.swift` en macOS; PNG de 1024 × 1024, sin canal alfa. La extracción necesita que exista el AAR Tabler Compose 1.1.1 en la caché Gradle local. Las capturas de referencia de Android API 36 (411 × 914 dp) e iPhone 17 (402 × 874 pt) están en [`home-android-api36.png`](home-android-api36.png) y [`home-ios26.png`](home-ios26.png). Los elementos de la barra de estado y la isla dinámica son propios de iOS y Android.
+El icono de la app reproduce los vectores de `ic_launcher_background.xml` y `ic_launcher_foreground.xml`. Los assets vectoriales de la app se regeneran desde el checkout Android con `python3 scripts/extract_android_vectors.py`; el icono se regenera con `swift scripts/generate-icon.swift` en macOS; PNG de 1024 × 1024, sin canal alfa. La extracción necesita que exista el AAR Tabler Compose 1.1.1 en la caché Gradle local. Las capturas de referencia de Android API 36 (411 × 914 dp) e iPhone 17 (402 × 874 pt) están en [`home-android-api36.png`](home-android-api36.png), [`home-ios26.png`](home-ios26.png), [`contacts-android-api36.png`](contacts-android-api36.png), [`contacts-ios26.png`](contacts-ios26.png) y [`dialer-ios26.png`](dialer-ios26.png). Los elementos de la barra de estado, Dynamic Island y algunas vistas del sistema son propios de iOS y Android.
